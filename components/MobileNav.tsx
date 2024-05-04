@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
+import Footer from "./Footer";
 import { cn } from "@/lib/utils";
 import { sidebarLinks } from "@/constants";
 import {
@@ -70,12 +71,9 @@ export default function MobileNav({ user }: MobileNavProps) {
                         />
 
                         <p
-                          className={cn(
-                            "text-16 font-semibold text-black-2",
-                            {
-                              "text-white": isActive,
-                            }
-                          )}
+                          className={cn("text-16 font-semibold text-black-2", {
+                            "text-white": isActive,
+                          })}
                         >
                           {item.label}
                         </p>
@@ -85,6 +83,8 @@ export default function MobileNav({ user }: MobileNavProps) {
                 })}
               </nav>
             </SheetClose>
+
+            <Footer user={user} type="mobile" />
           </div>
         </SheetContent>
       </Sheet>
