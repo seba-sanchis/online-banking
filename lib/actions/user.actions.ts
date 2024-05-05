@@ -40,8 +40,8 @@ export async function signIn({ email, password }: signInProps) {
   }
 }
 
-export async function signUp(userData: SignUpParams) {
-  const { email, password, firstName, lastName } = userData;
+export async function signUp({ password, ...userData }: SignUpParams) {
+  const { email, firstName, lastName } = userData;
 
   let newUserAccount;
 
@@ -123,7 +123,7 @@ export async function createLinkToken(user: User) {
       user: {
         client_user_id: user.$id,
       },
-      client_name: user.name,
+      client_name: `${user.firstName} ${user.lastName}`,
       products: ["auth"] as Products[],
       language: "en",
       country_codes: ["US"] as CountryCode[],
