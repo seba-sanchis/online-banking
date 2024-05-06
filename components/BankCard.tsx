@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
+import Copy from "./Copy";
 import { formatAmount } from "@/lib/utils";
 
 export default function BankCard({
@@ -10,12 +11,13 @@ export default function BankCard({
 }: CreditCardProps) {
   return (
     <div className="flex flex-col">
-      <Link href="/" className="bank-card">
+      <Link
+        href={`/transaction-history/?id=${account.appwriteItemId}`}
+        className="bank-card"
+      >
         <div className="bank-card_content">
           <div>
-            <h1 className="text-16 font-semibold text-white">
-              {userName}
-            </h1>
+            <h1 className="text-16 font-semibold text-white">{userName}</h1>
             <p className="font-ibm-plex-serif font-black text-white">
               {formatAmount(account.currentBalance)}
             </p>
@@ -28,7 +30,7 @@ export default function BankCard({
             </div>
 
             <p className="text-14 font-semibold tracking-[1.1px] text-white">
-              ●●●● ●●●● ●●●● <span className="text-16">1234</span>
+              ●●●● ●●●● ●●●● <span className="text-16">{account?.mask}</span>
             </p>
           </article>
         </div>
@@ -52,6 +54,8 @@ export default function BankCard({
           className="absolute top-0 left-0"
         />
       </Link>
+
+      {showBalance && <Copy title={account?.shareableId} />}
     </div>
   );
 }
