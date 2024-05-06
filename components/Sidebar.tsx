@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 
 import Footer from "./Footer";
 import { cn } from "@/lib/utils";
+import PlaidLink from "./PlaidLink";
 import { sidebarLinks } from "@/constants";
 
 export default function Sidebar({ user }: SiderbarProps) {
@@ -49,6 +50,8 @@ export default function Sidebar({ user }: SiderbarProps) {
             </Link>
           );
         })}
+
+        <PlaidLink user={user} />
       </nav>
 
       <Footer user={user} />
